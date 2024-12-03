@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Modification</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('{% static "images/4dbg.jpg" %}') no-repeat center center fixed; /* Replace with your actual image path */
+            background-size: cover;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .car-image {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .car-image img {
+            width: 800px;
+            height: auto;
+        }
+
+        .parts {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 400px;
+        }
+
+        .parts button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .parts button img {
+            width: 150px;
+            height: 150px;
+            margin-right: 10px;
+        }
+
+        .parts button:hover {
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side (Nitrous, Engine, Alloy) -->
+        <div class="parts left-parts">
+            <button onclick="location.href='{% url 'concept' %}'">
+                <img src="{% static 'images/nitrous.png' %}" alt="Nitrous"> Nitrous
+            </button>
+            <button>
+                <img src="{% static 'images/engine.png' %}" alt="Engine"> Engine
+            </button>
+            <button>
+                <img src="{% static 'images/alloy.png' %}" alt="Alloy"> Alloy
+            </button>
+        </div>
+
+        <!-- Center Car Image -->
+        <div class="car-image">
+            <img src="{% static 'images/cars.png' %}" alt="Car Image">
+        </div>
+
+        <!-- Right Side (Wheel, Spoiler) -->
+        <div class="parts right-parts">
+            <button>
+                <img src="{% static 'images/tyres.png' %}" alt="Wheel"> Wheel
+            </button>
+            <button>
+                <img src="{% static 'images/spoiler.png' %}" alt="Spoiler"> Spoiler
+            </button>
+        </div>
+    </div>
+</body>
+</html>

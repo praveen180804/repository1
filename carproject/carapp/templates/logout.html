@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} <!-- Load the static template tag -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Image */
+        body {
+            background: url("{% static 'images/lock.jpg' %}") no-repeat center center fixed; /* Replace with your image path in static folder */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Login Form Container */
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-container input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .login-container label {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Login Button */
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0069d9;
+        }
+
+        /* Links */
+        .login-container .forgot-password {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            margin-top: 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-container .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .login-container .remember-me {
+            display: inline-block;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <form>
+            <div>
+                <input type="email" placeholder="Email address" required>
+            </div>
+            <div>
+                <input type="password" placeholder="Password" required>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label class="remember-me">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+
+</body>
+</html>

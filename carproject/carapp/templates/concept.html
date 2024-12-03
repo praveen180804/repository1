@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+ {% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitrous Concept - Aptitude Question</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #e0e7ff, #f5f7ff);
+            position: relative; /* Relative positioning for the container */
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Ensure container is above the images */
+        }
+
+        /* Images positioned on both sides */
+        .image-left,
+        .image-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px; /* Adjust size as necessary */
+            height: auto;
+            z-index: 0; /* Ensure images are behind the container */
+        }
+
+        .image-left {
+            left: 10px;
+        }
+
+        .image-right {
+            right: 10px;
+        }
+
+        .container h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .formula-box {
+            margin: 20px 0;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            display: inline-block;
+        }
+
+        .formula-box p {
+            margin: 5px 0;
+        }
+
+        .next-btn {
+            background-color: #4A90E2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .next-btn:hover {
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left and Right Images using Django's static template tag -->
+    <img src="{% static 'images/nit-bg.png' %}" alt="Left Image" class="image-left">
+    <img src="{% static 'images/nit-bg.png' %}" alt="Right Image" class="image-right">
+
+    <div class="container">
+        <h2>Time, Speed, and Distance (Velocity)</h2>
+        <p><strong>Concept:</strong> Velocity is the rate of change of displacement over time, and speed is the rate of change of distance over time.</p>
+
+        <div class="formula-box">
+            <p><strong>Speed =</strong> Distance / Time</p>
+            <p><strong>Time =</strong> Distance / Speed</p>
+        </div>
+
+        <button class="next-btn" onclick="location.href='{% url 'questions' %}'">Next</button>
+    </div>
+
+</body>
+</html>

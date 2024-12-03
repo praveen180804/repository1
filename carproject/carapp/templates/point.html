@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Answer Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            background-image: url('path_to_your_image'); /* Optional background image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            background-color: #333;
+            position: relative;
+            height: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Center Content */
+        .center-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Question and Answer Display */
+        .quiz-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .quiz-question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .answer-option {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .answer-option.correct {
+            background-color: #4caf50;
+        }
+
+        /* Answer and Progress Information */
+        .result-info {
+            font-size: 22px;
+            margin: 20px 0;
+        }
+
+        /* Next Button */
+        .next-btn-container {
+            text-align: right;
+            padding: 20px;
+        }
+
+        .next-btn {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .next-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar at the Top -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text" id="progressText">1 / 10</div> <!-- Display progress -->
+    </div>
+
+    <!-- Center Content: Quiz Question and Answer Display -->
+    <div class="center-content">
+        <div class="quiz-container">
+            <div class="quiz-question">
+                A car is moving at a speed of 50 km/h. How much time will it take to cover a distance of 150 km?
+            </div>
+
+            <!-- Answer Display -->
+            <div class="result-info">
+                <strong>Correct!</strong> The answer is <span class="answer-option correct">3 hours</span>.
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Right: Next Question Button -->
+    <div class="next-btn-container">
+        <button class="next-btn" onclick="nextQuestion()">Next Question</button>
+    </div>
+
+    <script>
+        // Function to redirect to the next question
+        function nextQuestion() {
+            window.location.href = "next-question.html"; // Replace with your next question URL
+        }
+
+        // Function to update the progress bar and text
+        function updateProgress(currentQuestion, totalQuestions) {
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const percentComplete = (currentQuestion / totalQuestions) * 100;
+            progressBar.style.width = percentComplete + '%';
+            progressText.innerText = currentQuestion + ' / ' + totalQuestions;
+        }
+
+        // Example: Update progress bar to show "1 / 10"
+        updateProgress(1, 10);  // Example: Move to "2 out of 10"
+    </script>
+
+</body>
+</html>

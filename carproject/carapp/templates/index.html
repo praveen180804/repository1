@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Chatbot</title>
+    {% load static %} <!-- Load static files -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbox-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #chatResponse {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        #chatResponse p {
+            margin: 5px 0;
+        }
+
+        #chatInput {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .send-btn {
+            padding: 10px 15px;
+            background-color: #6200EA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .send-btn:hover {
+            background-color: #5A00CC;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'rewards' %}">Rewards</a></li>
+                <li><a href="#">Streak</a></li>
+                <li><a href="#">Rank</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="chatbox-container">
+        <h2>Chat with our Aptitude Bot</h2>
+
+        <!-- Chat response section -->
+        <div id="chatResponse">
+            <!-- Messages will appear here -->
+        </div>
+
+        <!-- Input and send button -->
+        <div>
+            <input type="text" id="chatInput" placeholder="Type your message here..." />
+            <button class="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to send message to chatbot
+        function sendMessage() {
+            const input = document.getElementById('chatInput').value;
+            const responseDiv = document.getElementById('chatResponse');
+
+            if (input.trim() === '') return;  // Prevent sending empty messages
+
+            fetch("{% url 'chatbot' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",  // Include CSRF token for POST request
+                },
+                body: JSON.stringify({message: input}),  // Send user message as JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display user message
+                responseDiv.innerHTML += `<p><strong>You:</strong> ${input}</p>`;
+
+                // Display bot response
+                responseDiv.innerHTML += `<p><strong>Bot:</strong> ${data.response}</p>`;
+
+                // Scroll to the bottom of the chat
+                responseDiv.scrollTop = responseDiv.scrollHeight;
+
+                // Clear the input field
+                document.getElementById('chatInput').value = '';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Section</title>
+    {% load static %}
+
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{% static 'images/rewardbg.jpg' %}") no-repeat center center fixed;
+            background-size: cover; /* Ensures background covers the entire screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .rewards-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .header {
+            text-align: left;
+            padding-bottom: 20px;
+        }
+
+        .header a {
+            font-size: 24px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            color: #6200EA;
+        }
+
+        /* Weekdays Section */
+        .weekdays {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            color: #888;
+            font-size: 18px;
+        }
+
+        .weekdays span {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .weekdays span:hover {
+            background-color: #ddd; /* Light grey background on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px); /* Slight lifting effect */
+            color: #6200EA; /* Change text color on hover */
+        }
+
+        .weekdays span.active {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #6200EA;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .user-info div {
+            text-align: left;
+        }
+
+        .user-info div h3 {
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .user-info div p {
+            font-size: 16px;
+            color: #888;
+        }
+
+        .points-section {
+            text-align: right;
+        }
+
+        .points-section p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .add-money-btn {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .add-money-btn:hover {
+            background-color: #e91e63;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .rewards-container {
+                width: 90%;
+            }
+
+            .weekdays {
+                font-size: 14px;
+            }
+
+            .user-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .points-section {
+                text-align: left;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rewards-container">
+        <div class="header">
+            <a href="javascript:history.back()">←</a> <!-- Back Arrow with JS for navigation -->
+        </div>
+
+        <!-- Weekdays Section -->
+        <div class="weekdays" id="weekdays">
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+        </div>
+
+        <!-- User Card 1 -->
+        <div class="user-card">
+            <div class="user-info">
+                <img src="https://via.placeholder.com/60" alt="User Avatar">
+                <div>
+                    <h3>Sam</h3>
+                    <p>10 🌟 | $50</p>
+                </div>
+            </div>
+            <div class="points-section">
+                <p>Points: $15</p>
+                <button class="add-money-btn">Add Money</button>
+            </div>
+        </div>
+
+        <!-- User Card 2 -->
+        <div class="user-card">
+            <div class="user-info">
+                <img src="https://via.placeholder.com/60" alt="User Avatar">
+                <div>
+                    <h3>Isa</h3>
+                    <p>08 🌟 | $45</p>
+                </div>
+            </div>
+            <div class="points-section">
+                <p>Points: $20</p>
+                <button class="add-money-btn">Add Money</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Get all the day elements
+        const days = document.querySelectorAll('.weekdays span');
+
+        // Add click event listener to each day
+        days.forEach(day => {
+            day.addEventListener('click', function () {
+                // Remove 'active' class from all days
+                days.forEach(d => d.classList.remove('active'));
+
+                // Add 'active' class to the clicked day
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
